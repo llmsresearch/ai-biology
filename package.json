@@ -1,0 +1,53 @@
+{
+  "name": "ai-biology-playground",
+  "version": "1.0.0",
+  "description": "Interactive playground for visualizing LLM internals based on Anthropic's AI Biology research",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.158.0",
+    "@react-three/fiber": "^8.15.11",
+    "@react-three/drei": "^9.88.13",
+    "d3": "^7.8.5",
+    "@mui/material": "^5.14.18",
+    "@mui/icons-material": "^5.14.18",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.16.5",
+    "axios": "^1.6.2",
+    "react-router-dom": "^6.18.0",
+    "zustand": "^4.4.6",
+    "recharts": "^2.8.0",
+    "react-flow-renderer": "^10.3.17"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/three": "^0.158.3",
+    "@types/d3": "^7.4.3",
+    "@vitejs/plugin-react": "^4.1.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "eslint": "^8.53.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0"
+  },
+  "keywords": [
+    "ai",
+    "interpretability",
+    "llm",
+    "visualization",
+    "anthropic",
+    "neural-networks"
+  ],
+  "author": "AI Biology Playground",
+  "license": "MIT"
+}

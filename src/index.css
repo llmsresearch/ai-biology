@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: linear-gradient(-45deg, #13182D, #1F2A68, #2D2A70, #0A194F, #1C3A8A);
+  background-size: 400% 400%;
+  animation: gradientBG 25s ease infinite;
+  color: #F5F5F5; /* Brighter default text color for better contrast */
+}
+
+/* Improve link visibility globally */
+a {
+  color: #4FC3F7 !important;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #29B6F6 !important;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #81C784 !important;
+}
+
+/* Specific styling for footer links */
+footer a, .MuiBox-root footer a {
+  color: #4FC3F7 !important;
+}
+
+footer a:hover, .MuiBox-root footer a:hover {
+  color: #29B6F6 !important;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.feature-node {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.feature-node:hover {
+  transform: scale(1.1);
+}
+
+.connection-line {
+  stroke-width: 2px;
+  stroke-opacity: 0.7;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { stroke-opacity: 0.7; }
+  50% { stroke-opacity: 1; }
+  100% { stroke-opacity: 0.7; }
+}
+
+.reasoning-step {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.reasoning-step:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.intervention-panel {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin: 16px;
+  max-width: 400px;
+}
+
+.glass-card {
+  background-color: rgba(30, 40, 70, 0.8) !important; /* Improved opacity and brightness */
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Brighter border */
+  border-radius: 12px !important; 
+  box-shadow: 0 8px 32px 0 rgba(10, 20, 80, 0.37) !important;
+  padding: 24px;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.feature-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.attribution-graph {
+  width: 100%;
+  height: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Add other global styles here */
