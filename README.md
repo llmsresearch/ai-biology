@@ -10,6 +10,9 @@
 
 An interactive web application designed to **visualize and explore** the groundbreaking AI interpretability research conducted by the [Anthropic Research Team](https://www.anthropic.com/research). This project serves as an educational tool to understand complex AI model internals, circuit analysis, and mechanistic interpretability through hands-on experimentation.
 
+![image](https://github.com/user-attachments/assets/c5c84302-3802-4979-a8ca-d57b48520ef3)
+
+
 This research introduces a new paradigm for understanding how large language models think internally by developing an "AI microscope" that reveals computational pathways and internal mechanisms. By drawing inspiration from neuroscience, it provides the first detailed look inside frontier language models like Claude.
 
 > ⚠️ **Research Attribution**: This project is created for educational purposes to demonstrate and explain the research methodologies and findings published by Anthropic. All core research concepts, methodologies, and insights belong to the original Anthropic research team.
