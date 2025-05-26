@@ -109,7 +109,7 @@ const AppLayout: React.FC = () => {
       </List>
       <Box sx={{ flexGrow: 1 }} />
       <Box sx={{ p: 2, textAlign: 'center', fontSize: 13, color: 'text.secondary' }}>
-        Inspired by Anthropic Research<br />
+        Playground to understand Anthropic team's AI biology research<br />
         <a href="https://www.anthropic.com/research" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>Research</a>
       </Box>
     </Box>
@@ -126,12 +126,8 @@ const AppLayout: React.FC = () => {
             </IconButton>
           )}
           <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
-            AI Biology Project
+            AI Biology Playground
           </Typography>
-          {/* Theme toggle placeholder */}
-          <IconButton color="inherit" aria-label="toggle theme">
-            🌙
-          </IconButton>
         </Toolbar>
       </AppBar>
       <Box sx={{ display: 'flex', flexGrow: 1, width: '100%' }}>
@@ -185,20 +181,6 @@ const AppLayout: React.FC = () => {
           <MenuIcon />
         </Fab>
       )}
-      {/* Footer */}
-      <Box component="footer" sx={{ p: 2, textAlign: 'center', fontSize: 13, color: 'text.secondary', mt: 'auto', bgcolor: 'background.paper', borderTop: '1px solid #2228' }}>
-        © {new Date().getFullYear()} AI Biology Project. All rights reserved.
-        <Box sx={{ mt: 2, textAlign: 'left', maxWidth: 600, mx: 'auto' }}>
-          <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>Research References:</Typography>
-          <ul style={{margin: 0, paddingLeft: 18, fontSize: 13}}>
-            <li><a href="https://www.anthropic.com/research" target="_blank" rel="noopener noreferrer">Anthropic Research Overview</a>: Anthropic's main research portal.</li>
-            <li><a href="https://www.anthropic.com/news/mapping-the-mind-of-a-large-language-model" target="_blank" rel="noopener noreferrer">Mapping the Mind of a Large Language Model</a>: Blog post on understanding LLM internals.</li>
-            <li><a href="https://transformer-circuits.pub/2025/attribution-graphs/methods.html" target="_blank" rel="noopener noreferrer">Circuit Tracing: Revealing Computational Graphs in Language Models</a>: Paper on attribution graphs and circuit tracing.</li>
-            <li><a href="https://transformer-circuits.pub/2025/attribution-graphs/biology.html" target="_blank" rel="noopener noreferrer">On the Biology of a Large Language Model</a>: Biological analogies for LLM circuits.</li>
-            <li><a href="https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html" target="_blank" rel="noopener noreferrer">Scaling Monosemanticity</a>: Extracting interpretable features from Claude 3 Sonnet.</li>
-          </ul>
-        </Box>
-      </Box>
     </Box>
   );
 };

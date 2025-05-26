@@ -34,7 +34,7 @@ Analyze **creative generation circuits** and planning mechanisms that guide AI p
 Guided walkthrough of AI interpretability concepts and research methodologies.
 
 ### **LLM Connector** (`LLMConnector.tsx`)
-Interface for connecting to various **Large Language Models** (GPT, Claude, etc.) to enable real-time experimentation with different architectures.
+Pre-configured with **free GPT-4o access** for educational experimentation. No API keys required - ready to use out of the box for exploring AI interpretability research.
 
 ## Educational Objectives
 
@@ -66,7 +66,7 @@ Reveals how features connect and interact, creating "wiring diagrams" that show 
 | **3D Visualization** | Three.js (@react-three/fiber) | Neural network and circuit visualizations |
 | **Styling** | Material-UI + CSS | Modern, responsive design |
 | **Backend API** | Node.js Express | LLM integration and data processing |
-| **AI Integration** | Azure OpenAI, Anthropic Claude | Real-time model interactions |
+| **AI Integration** | GPT-4o (Free Access) | Real-time model interactions for research |
 
 ## Research Foundation & Citations
 
@@ -107,9 +107,12 @@ This project is built upon groundbreaking research in **AI interpretability** an
 
 ## Getting Started
 
+> **Free AI Access Notice**: This educational tool provides free GPT-4o access to support AI interpretability research. Please use responsibly - this service has real costs and is provided to benefit the educational community.
+
 ### Prerequisites
 - **Node.js** (v16 or higher)
 - **npm** or **yarn** package manager
+- **No API keys required** - GPT-4o access is pre-configured
 
 ### Installation & Setup
 
@@ -131,14 +134,7 @@ This project is built upon groundbreaking research in **AI interpretability** an
    cd ..
    ```
 
-4. **Configure environment variables**
-   ```bash
-   cd api
-   cp .env.example .env
-   # Edit .env with your API keys (Azure OpenAI, Anthropic, etc.)
-   ```
-
-5. **Start development servers**
+4. **Start development servers**
    
    **Frontend** (Terminal 1):
    ```bash
@@ -151,19 +147,20 @@ This project is built upon groundbreaking research in **AI interpretability** an
    npm start
    ```
 
-6. **Open the application**
+5. **Open the application**
    - Navigate to `http://localhost:5173` (or the port shown in your terminal)
-   - Begin exploring AI interpretability concepts!
+   - Begin exploring AI interpretability concepts with free GPT-4o access!
 
-### Environment Configuration
+## Responsible Usage Policy
 
-Create an `.env` file in the `api/` directory with:
-```env
-AZURE_OPENAI_ENDPOINT=your_endpoint_here
-AZURE_OPENAI_API_KEY=your_api_key_here
-AZURE_OPENAI_DEPLOYMENT=your_deployment_name
-ANTHROPIC_API_KEY=your_anthropic_key_here
-```
+This project provides **free GPT-4o access** for educational purposes. Please help keep this service available by:
+
+- **Using for learning and research only** - Focus on understanding AI interpretability concepts
+- **Being mindful of usage** - Avoid excessive requests or automated interactions  
+- **Respecting the service** - This is provided at personal cost to support education
+- **Staying on topic** - Use the AI for exploring the research concepts demonstrated in this tool
+
+**Rate Limits**: To ensure fair access for all users, requests are limited to maintain service availability.
 
 ## Contributing
 

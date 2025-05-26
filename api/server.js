@@ -11,10 +11,54 @@ const port = process.env.API_PORT || 3001;
 const API_VERSION = process.env.AZURE_OPENAI_API_VERSION || '2024-12-01-preview';
 console.log('Using Azure OpenAI API version:', API_VERSION);
 
+// Simple rate limiting for free service
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 10; // 10 requests per minute per IP
+
+function rateLimit(req, res, next) {
+  const clientIP = req.ip || req.connection.remoteAddress || 'unknown';
+  const now = Date.now();
+  
+  console.log(`Rate limit check for IP: ${clientIP}`);
+  
+  if (!rateLimitMap.has(clientIP)) {
+    rateLimitMap.set(clientIP, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    console.log(`New IP ${clientIP}, count: 1`);
+    return next();
+  }
+  
+  const clientData = rateLimitMap.get(clientIP);
+  
+  if (now > clientData.resetTime) {
+    // Reset the window
+    clientData.count = 1;
+    clientData.resetTime = now + RATE_LIMIT_WINDOW;
+    console.log(`Reset window for IP ${clientIP}, count: 1`);
+    return next();
+  }
+  
+  if (clientData.count >= MAX_REQUESTS_PER_WINDOW) {
+    console.log(`Rate limit exceeded for IP ${clientIP}, count: ${clientData.count}`);
+    return res.status(429).json({ 
+      error: 'Rate limit exceeded', 
+      message: 'Too many requests. Please wait a moment before trying again.',
+      retryAfter: Math.ceil((clientData.resetTime - now) / 1000)
+    });
+  }
+  
+  clientData.count++;
+  console.log(`Incremented count for IP ${clientIP}, count: ${clientData.count}`);
+  next();
+}
+
 // Middleware
 app.use(cors()); // Allow cross-origin requests
 app.use(helmet()); // Basic security headers
 app.use(express.json()); // Parse JSON request bodies
+
+// Trust proxy to get real IP addresses
+app.set('trust proxy', true);
 
 // ---- Azure OpenAI Credentials from .env (for the free tier) ----
 const azureFreeEndpoint = process.env.AZURE_OPENAI_ENDPOINT;
@@ -38,8 +82,94 @@ if (azureFreeEndpoint && azureFreeApiKey && azureFreeDeploymentName) {
   console.warn('Free Azure OpenAI credentials (endpoint, key, or deployment name) not found in .env. The /api/azure-openai/free endpoint will not work.');
 }
 
-// ---- 1. Free GPT-4o Endpoint ----
-app.post('/api/azure-openai/free', async (req, res) => {
+// ---- 1. Test Connection Endpoint ----
+app.post('/api/test-connection', rateLimit, async (req, res) => {
+  const { provider, model } = req.body;
+  
+  if (provider === 'free-gpt4o') {
+    if (!azureFreeClient || !azureFreeDeploymentName) {
+      return res.status(500).json({ error: 'Free GPT-4o service is not configured on the server.' });
+    }
+    
+    try {
+      // Test the connection with a simple message
+      const testResult = await azureFreeClient.chat.completions.create({
+        model: azureFreeDeploymentName,
+        messages: [{ role: 'user', content: 'Hello' }],
+        max_tokens: 5,
+        temperature: 0.1,
+        stream: false,
+      });
+      
+      res.json({ status: 'connected', message: 'Free GPT-4o service is ready' });
+    } catch (error) {
+      console.error('Test connection failed:', error.message);
+      res.status(500).json({ error: 'Connection test failed', details: error.message });
+    }
+  } else {
+    res.status(400).json({ error: 'Unsupported provider for test connection' });
+  }
+});
+
+// ---- 2. Free GPT-4o Endpoint ----
+app.post('/api/free-gpt4o', rateLimit, async (req, res) => {
+  if (!azureFreeClient || !azureFreeDeploymentName) {
+    return res.status(500).json({ error: 'Free GPT-4o service is not configured on the server.' });
+  }
+
+  const { messages, max_tokens, temperature, stream } = req.body;
+
+  if (!messages) {
+    return res.status(400).json({ error: 'Request body must contain "messages" array.' });
+  }
+
+  try {
+    if (stream) {
+      const events = await azureFreeClient.chat.completions.create({
+        model: azureFreeDeploymentName,
+        messages: messages,
+        max_tokens: max_tokens,
+        temperature: temperature,
+        stream: true,
+      });
+      
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive');
+
+      for await (const event of events) {
+        if (event.choices && event.choices[0] && event.choices[0].delta && event.choices[0].delta.content) {
+          res.write(`data: ${JSON.stringify({ content: event.choices[0].delta.content })}\n\n`);
+        }
+      }
+      res.end();
+    } else {
+      const result = await azureFreeClient.chat.completions.create({
+        model: azureFreeDeploymentName,
+        messages: messages,
+        max_tokens: max_tokens,
+        temperature: temperature,
+        stream: false,
+      });
+      res.json(result);
+    }
+  } catch (error) {
+    console.error('Error calling free GPT-4o:', error.message);
+    if (error.response) {
+      console.error('Error response data:', error.response.data);
+      res.status(error.response.status || 500).json({ error: 'Failed to call free GPT-4o service', details: error.response.data });
+    } else if (error.status) {
+        console.error('Error status:', error.status);
+        console.error('Error details:', error.error);
+        res.status(error.status || 500).json({ error: 'Failed to call free GPT-4o service', details: error.error ? error.error.message : error.message });
+    } else {
+      res.status(500).json({ error: 'Failed to call free GPT-4o service', details: error.message });
+    }
+  }
+});
+
+// ---- 3. Legacy Free Endpoint (for backward compatibility) ----
+app.post('/api/azure-openai/free', rateLimit, async (req, res) => {
   if (!azureFreeClient || !azureFreeDeploymentName) {
     return res.status(500).json({ error: 'Free tier Azure OpenAI is not configured on the server.' });
   }
@@ -98,7 +228,7 @@ app.post('/api/azure-openai/free', async (req, res) => {
   }
 });
 
-// ---- 2. Proxy Endpoint for User-Provided Keys ----
+// ---- 4. Proxy Endpoint for User-Provided Keys ----
 app.post('/api/llm/proxy', async (req, res) => {
   const { proxyDetails, modelName, messages, max_tokens, temperature, stream } = req.body;
 
