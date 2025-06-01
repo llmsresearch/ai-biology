@@ -10,7 +10,8 @@
 
 An educational platform providing hands-on exploration of authentic AI interpretability research through interactive visualizations, real sparse autoencoder features, and computational pathway analysis.
 
-![AI Biology Playground Screenshot](https://github.com/user-attachments/assets/c5c84302-3802-4979-a8ca-d57b48520ef3)
+![image](https://github.com/user-attachments/assets/cbac7153-d0fd-4105-bb43-e89262dfafe2)
+
 
 ## 🔬 Research-Based Learning
 
