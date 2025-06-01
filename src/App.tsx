@@ -1,59 +1,76 @@
-import React from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppLayout from './components/AppLayout';
 
-// Enhanced Dark Theme with improved visibility
-const darkTheme = createTheme({
+// Theme Context
+interface ThemeContextType {
+  isDarkMode: boolean;
+  toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within ThemeProvider');
+  }
+  return context;
+};
+
+// Unified purple color for all interactive elements
+const PURPLE_COLOR = '#7A00E6';
+
+// Light Theme
+const lightTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#4A90E2', // Brighter blue for better visibility
-      light: '#6BA3E8',
-      dark: '#357ABD'
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
     },
     secondary: {
-      main: '#00E676', // Vibrant green for secondary elements
-      light: '#33EA84',
-      dark: '#00C853'
+      main: '#666666',
+      light: '#888888',
+      dark: '#444444'
     },
     background: {
-      default: 'transparent', // Handled by global CSS
-      paper: 'rgba(25, 35, 60, 0.75)', // More opaque and lighter for better contrast
+      default: '#FFFFFF',
+      paper: '#F8F9FA',
     },
     text: {
-      primary: '#F5F5F5', // Brighter primary text
-      secondary: '#D0D8E8', // Much brighter secondary text for better readability
+      primary: '#1A1A1A',
+      secondary: '#666666',
     },
     info: {
-      main: '#29B6F6',
-      light: '#4FC3F7',
-      dark: '#0288D1'
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
     },
     success: {
-      main: '#66BB6A',
-      light: '#81C784',
-      dark: '#388E3C'
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
     },
     warning: {
-      main: '#FFA726',
-      light: '#FFB74D',
-      dark: '#F57C00'
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
     },
     error: {
-      main: '#EF5350',
-      light: '#E57373',
-      dark: '#C62828'
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
     }
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-    h3: { fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.05em'},
-    h4: { fontWeight: 700, color: '#F8F9FA' }, // Brighter white for h4
-    h5: { fontWeight: 600, color: '#E9ECEF' }, // Brighter for h5
-    h6: { fontWeight: 600, color: '#DEE2E6' }, // Brighter for h6
-    body1: { color: '#F5F5F5' }, // Explicit bright color for body text
-    body2: { color: '#E0E0E0' }, // Bright secondary body text
+    h3: { fontWeight: 700, letterSpacing: '0.05em'},
+    h4: { fontWeight: 700 },
+    h5: { fontWeight: 600 },
+    h6: { fontWeight: 600 },
     button: {
       textTransform: 'none',
       fontWeight: 600,
@@ -63,17 +80,20 @@ const darkTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: 'rgba(30, 40, 70, 0.8)', // Lighter and more opaque
+          backgroundColor: '#F8F9FA',
           backgroundImage: 'none',
+          border: '1px solid #E0E0E0',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         },
       },
     },
     MuiAppBar: {
       styleOverrides: {
         root: {
-          background: 'rgba(20, 30, 55, 0.85)',
-          backdropFilter: 'blur(12px)',
-          boxShadow: '0 2px 12px rgba(0,0,0,0.4)',
+          background: '#FFFFFF',
+          backdropFilter: 'none',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+          borderBottom: '1px solid #E0E0E0',
         },
       },
     },
@@ -83,14 +103,14 @@ const darkTheme = createTheme({
           textTransform: 'none',
           fontWeight: 500,
           fontSize: '1rem',
-          color: '#D0D8E8', // Brighter tab text
+          color: '#666666',
           '&.Mui-selected': {
-            color: '#FFFFFF',
+            color: PURPLE_COLOR,
             fontWeight: 700,
           },
           '&:hover': {
-            backgroundColor: 'rgba(0, 230, 118, 0.1)',
-            color: '#E8F5E8',
+            backgroundColor: 'rgba(122, 0, 230, 0.05)',
+            color: PURPLE_COLOR,
           }
         },
       },
@@ -98,9 +118,9 @@ const darkTheme = createTheme({
     MuiTabs: {
       styleOverrides: {
         indicator: {
-          height: '3px',
-          borderRadius: '3px 3px 0 0',
-          backgroundColor: '#00E676',
+          height: '2px',
+          borderRadius: '2px 2px 0 0',
+          backgroundColor: PURPLE_COLOR,
         },
       },
     },
@@ -110,92 +130,235 @@ const darkTheme = createTheme({
           borderRadius: '8px',
           padding: '10px 20px',
         },
-        containedPrimary: {
+        contained: {
           color: '#FFFFFF',
-          backgroundColor: '#4A90E2',
+          backgroundColor: PURPLE_COLOR,
           '&:hover': {
-            backgroundColor: '#357ABD',
+            backgroundColor: '#5A00B3',
           }
         },
-        containedSecondary: {
-            color: '#FFFFFF',
-            backgroundColor: '#00E676',
-            '&:hover': {
-                backgroundColor: '#00C853',
-            }
-        },
-        outlinedPrimary: {
-            borderColor: '#4A90E2',
-            color: '#4A90E2',
-            '&:hover': {
-                backgroundColor: 'rgba(74, 144, 226, 0.1)',
-                borderColor: '#357ABD',
-                color: '#6BA3E8'
-            }
+        outlined: {
+          borderColor: PURPLE_COLOR,
+          color: PURPLE_COLOR,
+          '&:hover': {
+            backgroundColor: 'rgba(122, 0, 230, 0.1)',
+            borderColor: '#5A00B3',
+            color: '#5A00B3'
+          }
         },
       }
     },
     MuiIconButton: {
       styleOverrides: {
         root: {
-          color: '#D0D8E8',
+          color: '#666666',
           '&:hover': {
-            backgroundColor: 'rgba(0, 230, 118, 0.15)',
-            color: '#00E676'
+            backgroundColor: 'rgba(122, 0, 230, 0.05)',
+            color: PURPLE_COLOR
           }
         }
       }
     },
-    MuiChip: {
-        styleOverrides: {
-            root: {
-                fontWeight: 500,
-            },
-            outlined: {
-                borderColor: 'rgba(0, 230, 118, 0.7)',
-                color: '#00E676',
-                backgroundColor: 'rgba(0, 230, 118, 0.08)',
-                '&:hover': {
-                    backgroundColor: 'rgba(0, 230, 118, 0.2)',
-                    borderColor: '#00E676'
-                }
-            },
-            filled: {
-                backgroundColor: 'rgba(74, 144, 226, 0.2)',
-                color: '#F5F5F5'
-            }
-        }
-    },
     MuiLink: {
       styleOverrides: {
         root: {
-          color: '#4FC3F7', // Bright cyan for links
-          textDecoration: 'underline',
+          color: PURPLE_COLOR,
+          textDecoration: 'none',
           '&:hover': {
-            color: '#29B6F6',
+            color: '#5A00B3',
             textDecoration: 'underline'
           }
         }
       }
     },
-    MuiAlert: {
+  }
+});
+
+// Dark Theme
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
+    },
+    secondary: {
+      main: '#9E9E9E',
+      light: '#EEEEEE',
+      dark: '#757575'
+    },
+    background: {
+      default: '#0A0A0A',
+      paper: '#1E1E1E',
+    },
+    text: {
+      primary: '#FFFFFF',
+      secondary: '#B0B0B0',
+    },
+    info: {
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
+    },
+    success: {
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
+    },
+    warning: {
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
+    },
+    error: {
+      main: PURPLE_COLOR,
+      light: '#9A33FF',
+      dark: '#5A00B3'
+    }
+  },
+
+  typography: {
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    h3: { fontWeight: 700, letterSpacing: '0.05em'},
+    h4: { fontWeight: 700 },
+    h5: { fontWeight: 600 },
+    h6: { fontWeight: 600 },
+    button: {
+      textTransform: 'none',
+      fontWeight: 600,
+    },
+  },
+  components: {
+    MuiPaper: {
       styleOverrides: {
         root: {
-          '& .MuiAlert-message': {
-            color: '#F5F5F5' // Ensure alert text is bright
+          backgroundColor: '#1E1E1E',
+          backgroundImage: 'none',
+          border: '1px solid #333333',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          background: '#0D0D0D',
+          backdropFilter: 'none',
+          boxShadow: '0 1px 3px rgba(255,255,255,0.1)',
+          borderBottom: '1px solid #333333',
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          fontWeight: 500,
+          fontSize: '1rem',
+          color: '#B0B0B0',
+          '&.Mui-selected': {
+            color: PURPLE_COLOR,
+            fontWeight: 700,
+          },
+          '&:hover': {
+            backgroundColor: 'rgba(122, 0, 230, 0.1)',
+            color: PURPLE_COLOR,
+          }
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          height: '2px',
+          borderRadius: '2px 2px 0 0',
+          backgroundColor: PURPLE_COLOR,
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
+          padding: '10px 20px',
+        },
+        contained: {
+          color: '#FFFFFF',
+          backgroundColor: PURPLE_COLOR,
+          '&:hover': {
+            backgroundColor: '#5A00B3',
+          }
+        },
+        outlined: {
+          borderColor: PURPLE_COLOR,
+          color: PURPLE_COLOR,
+          '&:hover': {
+            backgroundColor: 'rgba(122, 0, 230, 0.1)',
+            borderColor: '#5A00B3',
+            color: '#5A00B3'
+          }
+        },
+      }
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: '#B0B0B0',
+          '&:hover': {
+            backgroundColor: 'rgba(122, 0, 230, 0.1)',
+            color: PURPLE_COLOR
           }
         }
       }
-    }
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: PURPLE_COLOR,
+          textDecoration: 'none',
+          '&:hover': {
+            color: '#9A33FF',
+            textDecoration: 'underline'
+          }
+        }
+      }
+    },
   }
 });
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Load theme preference from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  // Update body background color when theme changes
+  useEffect(() => {
+    document.body.style.backgroundColor = isDarkMode ? '#0A0A0A' : '#FFFFFF';
+    document.body.style.color = isDarkMode ? '#FFFFFF' : '#1A1A1A';
+  }, [isDarkMode]);
+
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode;
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+  };
+
+  const currentTheme = isDarkMode ? darkTheme : lightTheme;
+
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <AppLayout />
-    </ThemeProvider>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      <ThemeProvider theme={currentTheme}>
+        <CssBaseline />
+        <AppLayout />
+      </ThemeProvider>
+    </ThemeContext.Provider>
   );
 }
 

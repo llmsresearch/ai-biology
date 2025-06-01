@@ -1,6 +1,7 @@
 {
   "name": "ai-biology-api",
   "version": "1.0.0",
+  "description": "Backend API for AI Biology Playground - Educational platform exploring LLM applications in biological research",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,11 +12,23 @@
     "ai",
     "biology",
     "llm",
-    "api"
+    "api",
+    "educational",
+    "research",
+    "azure-openai",
+    "bioinformatics",
+    "machine-learning"
   ],
-  "author": "",
-  "license": "ISC",
-  "description": "Backend API for AI Biology webapp with sponsored Azure OpenAI access",
+  "author": "LLMs Research",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LLMsResearch/ai-biology-playground"
+  },
+  "bugs": {
+    "url": "https://github.com/LLMsResearch/ai-biology-playground/issues"
+  },
+  "homepage": "https://github.com/LLMsResearch/ai-biology-playground#readme",
   "dependencies": {
     "@azure/openai": "^2.0.0",
     "axios": "^1.9.0",
@@ -24,7 +37,9 @@
     "express": "^5.1.0",
     "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
-    "openai": "^4.0.0"
+    "openai": "^4.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"

@@ -14,49 +14,34 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background: linear-gradient(-45deg, #13182D, #1F2A68, #2D2A70, #0A194F, #1C3A8A);
-  background-size: 400% 400%;
-  animation: gradientBG 25s ease infinite;
-  color: #F5F5F5; /* Brighter default text color for better contrast */
-}
+/* Theme-based styling handled by Material-UI theme provider */
 
-/* Improve link visibility globally */
+/* Professional monochrome link styling */
 a {
-  color: #4FC3F7 !important;
+  color: #CCCCCC !important;
   text-decoration: underline;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #29B6F6 !important;
+  color: #FFFFFF !important;
   text-decoration: underline;
 }
 
 a:visited {
-  color: #81C784 !important;
+  color: #B0B0B0 !important;
 }
 
 /* Specific styling for footer links */
 footer a, .MuiBox-root footer a {
-  color: #4FC3F7 !important;
+  color: #CCCCCC !important;
 }
 
 footer a:hover, .MuiBox-root footer a:hover {
-  color: #29B6F6 !important;
+  color: #FFFFFF !important;
 }
 
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+
 
 #root {
   min-height: 100vh;
@@ -92,35 +77,30 @@ footer a:hover, .MuiBox-root footer a:hover {
 }
 
 .reasoning-step {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
+  /* Background and border handled by theme system */
+  backdrop-filter: none;
+  border-radius: 8px;
   padding: 16px;
   margin: 8px 0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
 }
 
 .reasoning-step:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  /* Hover effect handled by theme system */
+  transform: translateY(-1px);
 }
 
 .intervention-panel {
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  /* Styling now handled by Material-UI theme system */
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 8px;
   margin: 16px;
   max-width: 400px;
 }
 
 .glass-card {
-  background-color: rgba(30, 40, 70, 0.8) !important; /* Improved opacity and brightness */
-  backdrop-filter: blur(12px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important; /* Brighter border */
-  border-radius: 12px !important; 
-  box-shadow: 0 8px 32px 0 rgba(10, 20, 80, 0.37) !important;
+  /* Styling now handled by Material-UI theme system */
+  border-radius: 8px !important; 
   padding: 24px;
 }
 
@@ -128,9 +108,9 @@ footer a:hover, .MuiBox-root footer a:hover {
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  border-top-color: #fff;
+  border-top-color: #FFFFFF;
   animation: spin 1s ease-in-out infinite;
 }
 
@@ -140,10 +120,9 @@ footer a:hover, .MuiBox-root footer a:hover {
 
 .feature-tooltip {
   position: absolute;
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
+  /* Background and color handled by theme system */
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 12px;
   pointer-events: none;
   z-index: 1000;
@@ -154,8 +133,8 @@ footer a:hover, .MuiBox-root footer a:hover {
 .attribution-graph {
   width: 100%;
   height: 500px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+  /* Border and background handled by theme system */
+  border-radius: 8px;
   overflow: hidden;
 }
 

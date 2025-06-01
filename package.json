@@ -1,14 +1,14 @@
 {
   "name": "ai-biology-playground",
-  "version": "1.0.0",
-  "description": "Interactive playground for visualizing LLM internals based on Anthropic's AI Biology research",
-  "main": "src/index.js",
+  "version": "1.0.0", 
+  "description": "Interactive research laboratory for AI interpretability education using authentic research data and visualizations",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "start:full": "./scripts/start-servers.sh"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -41,13 +41,23 @@
     "@typescript-eslint/parser": "^6.10.0"
   },
   "keywords": [
-    "ai",
-    "interpretability",
-    "llm",
-    "visualization",
-    "anthropic",
-    "neural-networks"
+    "ai-interpretability",
+    "ai-education", 
+    "sparse-autoencoders",
+    "attribution-graphs",
+    "ai-safety",
+    "neural-networks",
+    "research-tools",
+    "interactive-visualization"
   ],
-  "author": "AI Biology Playground",
-  "license": "MIT"
+  "author": "AI Biology Playground Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/ai-biology-playground"
+  },
+  "homepage": "https://github.com/your-org/ai-biology-playground#readme",
+  "bugs": {
+    "url": "https://github.com/your-org/ai-biology-playground/issues"
+  }
 }

@@ -29,6 +29,12 @@ vite.config.ts.timestamp-*
 .idea/
 *.swp
 *.swo
+
+# Development files
+.DS_Store
+*.tmp
+*.cache
+*.log
 *~
 .DS_Store
 Thumbs.db
