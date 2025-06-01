@@ -22,82 +22,82 @@ This project transforms groundbreaking AI interpretability research into accessi
 - **Safety Analysis**: Production-grade content safety detection
 - **Research Methods**: Actual techniques used in AI interpretability research
 
-## 🎯 Core Features
+## Core Features
 
-### 📊 Real SAE Explorer
+### Real SAE Explorer
 Explore authentic sparse autoencoder features extracted from production language models:
 - **34M+ Features**: Direct access to features from published Anthropic research
 - **Interactive Search**: Filter by semantic categories, activation patterns, and layers
 - **Feature Details**: Examine top activating tokens, example prompts, and confidence scores
 - **Research Context**: Links to original papers and methodologies
 
-### 🌐 Attribution Graph Viewer
+### Attribution Graph Viewer
 3D visualization of computational pathways and feature interactions:
 - **Interactive Networks**: Explore feature-to-feature influence patterns
 - **3D Visualization**: Three.js powered network graphs with smooth animations
 - **Pathway Tracing**: Follow multi-step reasoning chains through the model
 - **Real Data**: Authentic attribution patterns from research datasets
 
-### 🛡️ Safety Features Detector  
+### Safety Features Detector  
 Analyze content for safety-relevant patterns using research-grade detection:
 - **Feature-Based Detection**: Identify safety triggers through interpretable features
 - **Risk Assessment**: Multi-dimensional safety scoring and analysis
 - **Real-Time Analysis**: Live content evaluation with detailed explanations
 - **Research Validation**: Methods validated through published safety research
 
-### 🧪 API Playground
+### API Playground
 Interactive testing interface for all research endpoints:
 - **Live API Testing**: Send requests and examine responses in real-time
 - **Request Builder**: Visual interface for constructing API calls
 - **Response Analysis**: Detailed breakdown of API responses and data structures
 - **Educational Examples**: Pre-built examples demonstrating key concepts
 
-### 🎓 Interactive Tutorial
+### Interactive Tutorial
 Guided introduction to AI interpretability concepts:
 - **Step-by-Step Learning**: Progressive introduction to complex concepts
 - **Hands-On Exercises**: Interactive demonstrations with real data
 - **Research Context**: Background on methodologies and findings
 - **Visual Learning**: Diagrams and animations explaining key concepts
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 ai-biology-playground/
-├── 📁 src/                          # Frontend React application
-│   ├── 📁 components/               # React components
-│   │   ├── 🧩 AppLayout.tsx        # Main application layout
-│   │   ├── 🔬 RealSAEExplorer.tsx  # SAE feature exploration
-│   │   ├── 🌐 AttributionGraphViewer.tsx  # 3D network visualization
-│   │   ├── 🛡️ SafetyFeaturesDetector.tsx  # Safety analysis tools
-│   │   ├── 📊 FeatureAttributionVisualizer.tsx  # Feature analysis
-│   │   ├── 🎓 IntroductionTour.tsx  # Educational tutorial
-│   │   └── 🧪 APIPlayground.tsx    # API testing interface
-│   ├── 📁 utils/                   # Utilities and type definitions
+├── src/                          # Frontend React application
+│   ├── components/               # React components
+│   │   ├── AppLayout.tsx        # Main application layout
+│   │   ├── RealSAEExplorer.tsx  # SAE feature exploration
+│   │   ├── AttributionGraphViewer.tsx  # 3D network visualization
+│   │   ├── SafetyFeaturesDetector.tsx  # Safety analysis tools
+│   │   ├── FeatureAttributionVisualizer.tsx  # Feature analysis
+│   │   ├── IntroductionTour.tsx  # Educational tutorial
+│   │   └── APIPlayground.tsx    # API testing interface
+│   ├── utils/                   # Utilities and type definitions
 │   │   └── types.ts               # TypeScript interfaces
 │   ├── App.tsx                    # Root application component
 │   ├── main.tsx                   # Application entry point
 │   └── index.css                  # Global styles
-├── 📁 api/                         # Backend Express server
+├── api/                         # Backend Express server
 │   ├── server.js                  # Main API server with all endpoints
 │   ├── package.json              # Backend dependencies
 │   └── .env.example              # Environment variables template
-├── 📁 docs/                       # Comprehensive documentation
-│   ├── 📖 API.md                 # API endpoint documentation
-│   ├── 👨‍💻 DEVELOPMENT.md        # Development guide
-│   ├── 🤝 CONTRIBUTING.md        # Contribution guidelines
-│   └── 📚 RESEARCH.md            # Research background and concepts
-├── 📁 scripts/                    # Utility scripts
+├── docs/                       # Comprehensive documentation
+│   ├── API.md                 # API endpoint documentation
+│   ├── DEVELOPMENT.md        # Development guide
+│   ├── CONTRIBUTING.md        # Contribution guidelines
+│   └── RESEARCH.md            # Research background and concepts
+├── scripts/                    # Utility scripts
 │   ├── start-servers.sh          # Development server startup
 │   ├── sae_inference_service.py  # Optional Python SAE service
 │   └── requirements.txt          # Python dependencies
-├── 📁 public/                     # Static assets
+├── public/                     # Static assets
 ├── package.json                  # Frontend dependencies and scripts
 ├── vite.config.ts               # Vite build configuration
 ├── tsconfig.json                # TypeScript configuration
 └── README.md                    # This file
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Node.js** v16 or higher
@@ -141,7 +141,7 @@ npm run dev
 - **Backend API**: http://localhost:3002  
 - **Health Check**: http://localhost:3002/health
 
-## 💻 Development
+## Development
 
 ### Available Scripts
 
@@ -171,7 +171,7 @@ AZURE_OPENAI_API_VERSION=2024-06-01
 NODE_ENV=development
 ```
 
-## 📚 Documentation
+## Documentation
 
 - **[Interactive API Documentation](http://localhost:3002/api-docs)**: Swagger UI for testing and exploring APIs
 - **[API Reference](docs/API.md)**: Quick start guide and API overview
@@ -179,7 +179,7 @@ NODE_ENV=development
 - **[Research Background](docs/RESEARCH.md)**: Scientific foundation and methodologies
 - **[Contributing Guidelines](docs/CONTRIBUTING.md)**: How to contribute to the project
 
-## 🔬 Research Foundation
+## Research Foundation
 
 This project is built upon peer-reviewed research in AI interpretability:
 
@@ -222,7 +222,7 @@ Students and researchers will understand:
 - **Analysis**: Interpreting feature activations and attribution patterns
 - **Research**: Understanding and applying published methodologies
 
-## 🛡️ Responsible Usage
+## Responsible Usage
 
 This project provides **free educational access** to advanced AI research tools. Please use responsibly:
 
@@ -231,22 +231,22 @@ This project provides **free educational access** to advanced AI research tools.
 - **Attribution**: Always cite original research when referencing concepts
 - **Ethical Use**: No harmful content generation or safety circumvention
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions that enhance the educational value and research accessibility:
 
-- **🐛 Bug Reports**: Help improve reliability and user experience
-- **✨ New Features**: Add visualizations, tools, or educational content  
-- **📖 Documentation**: Improve explanations and examples
-- **🔬 Research Integration**: Add new research findings and datasets
+- **Bug Reports**: Help improve reliability and user experience
+- **New Features**: Add visualizations, tools, or educational content  
+- **Documentation**: Improve explanations and examples
+- **Research Integration**: Add new research findings and datasets
 
 See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines.
 
-## 📄 License
+## License
 
 This project is for educational purposes, demonstrating published AI interpretability research. Please respect original research and cite appropriately.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 ### Research Attribution
 
@@ -266,7 +266,7 @@ This project aims to make cutting-edge AI interpretability research accessible t
 
 ---
 
-**🔬 Built for Education | 🧠 Powered by Research | 🌍 Open for All**
+**🔬 Built for Education | Powered by Research | Open for All**
 
 *Making AI interpretability research accessible through interactive exploration and authentic research data.*
 
@@ -274,7 +274,7 @@ This project aims to make cutting-edge AI interpretability research accessible t
 
 This application provides authentic research tools and real data artifacts from AI interpretability research:
 
-### **🔬 NEW: Real SAE Explorer** (`RealSAEExplorer.tsx`)
+### **NEW: Real SAE Explorer** (`RealSAEExplorer.tsx`)
 **Direct access to authentic sparse autoencoder features** from published Anthropic research. Search, filter, and interact with actual SAE decompositions including:
 - Real feature activation patterns and frequencies
 - Authentic top activating tokens from research datasets  
@@ -282,7 +282,7 @@ This application provides authentic research tools and real data artifacts from 
 - Feature intervention and testing capabilities
 - Research-grade metadata and confidence scores
 
-### **🔬 NEW: Attribution Graph Viewer** (`AttributionGraphViewer.tsx`)
+### **NEW: Attribution Graph Viewer** (`AttributionGraphViewer.tsx`)
 **3D visualization of real attention flow networks** using authentic attribution data:
 - Interactive 3D network graphs with real node relationships
 - Authentic attention flow patterns from research models
